@@ -1,0 +1,10 @@
+{
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
+	"[typescript][typescriptreact][javascript][javascriptreact][json][jsonc][css]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 4,
+		"editor.detectIndentation": false
+	}
+}
