@@ -8,9 +8,10 @@ export default function SignInForm() {
 
 	return (
 		<form action={action} aria-busy={pending}>
-			<p>
-				<label htmlFor="email">Email: </label>
+			<div className="mb-3">
+				<label className="form-label" htmlFor="email">Email</label>
 				<input
+					className="form-control"
 					id="email"
 					name="email"
 					type="email"
@@ -18,10 +19,11 @@ export default function SignInForm() {
 					required
 					readOnly={pending}
 				/>
-			</p>
-			<p>
-				<label htmlFor="password">Password: </label>
+			</div>
+			<div className="mb-3">
+				<label className="form-label" htmlFor="password">Password</label>
 				<input
+					className="form-control"
 					id="password"
 					name="password"
 					type="password"
@@ -29,9 +31,9 @@ export default function SignInForm() {
 					required
 					readOnly={pending}
 				/>
-			</p>
-			{state.error && <p role="alert">{state.error}</p>}
-			<button type="submit" disabled={pending}>
+			</div>
+			{state.error && <p className="alert alert-danger" role="alert">{state.error}</p>}
+			<button className="btn btn-primary w-100" type="submit" disabled={pending}>
 				{pending ? "Signing in…" : "Sign in"}
 			</button>
 		</form>

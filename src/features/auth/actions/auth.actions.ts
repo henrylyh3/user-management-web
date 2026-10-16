@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { AuthApiError, getCurrentUser, signIn, signUp } from "@/features/auth/services/auth.service";
 import type { AuthActionState } from "@/features/auth/types/auth.types";
-import { getUserHomePath, setSession } from "@/lib/session";
+import { clearSession, getUserHomePath, setSession } from "@/lib/session";
 
 function readField(formData: FormData, field: string): string {
 	const value = formData.get(field);
@@ -81,4 +81,9 @@ export async function signUpAction(
 		return authError(error);
 	}
 
+}
+
+export async function signOutAction(): Promise<void> {
+	await clearSession();
+	redirect("/sign-in");
 }
