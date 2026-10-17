@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 html,
 body {
 	min-height: 100%;
@@ -13,4 +15,21 @@ body {
 	width: 48px;
 	height: 48px;
 	object-fit: cover;
+}
+
+.dropzone {
+	cursor: pointer;
+	border-style: dashed !important;
+	transition: background-color 0.2s, border-color 0.2s;
+}
+
+.dropzone:hover,
+.dropzone-active {
+	background-color: var(--bs-primary-bg-subtle) !important;
+	border-color: var(--bs-primary) !important;
+}
+
+.dropzone-disabled {
+	cursor: not-allowed;
+	opacity: 0.65;
 }

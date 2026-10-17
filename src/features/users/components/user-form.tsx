@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import { deleteUserImageAction, updateUserAction, uploadUserImageAction } from "@/features/users/actions/user.actions";
 import type { User, UpdateUserState } from "@/features/users/types/user.types";
+import Dropzone from "@/features/users/components/Dropzone";
 
 type EditFormProps = {
 	user: User;
@@ -36,8 +37,18 @@ function ProfileImage({ user }: { user: User }) {
 }
 
 function UserImageEditor({ user }: { user: User }) {
-	const upload = uploadUserImageAction.bind(null, user.id);
 	const remove = deleteUserImageAction.bind(null, user.id);
+	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
+	async function upload(previousState: UpdateUserState, formData: FormData) {
+		const image = selectedFiles[0];
+
+		if (image) {
+			formData.set("image", image);
+		}
+
+		return uploadUserImageAction(user.id, previousState, formData);
+	}
 
 	const [uploadState, uploadAction, uploadPending] = useActionState(upload, {
 		error: "",
@@ -55,37 +66,64 @@ function UserImageEditor({ user }: { user: User }) {
 		<section className="mb-4">
 			<ProfileImage user={user} />
 
-			<form className="mt-3" action={uploadAction}>
-				<label className="form-label" htmlFor="profileImage">Profile picture</label>
-				<input
-					className="form-control"
-					id="profileImage"
-					name="image"
-					type="file"
+			<div className="mt-3">
+				<label className="form-label">Profile picture</label>
+
+				<Dropzone
+					key={user.imageUrl ?? "empty"}
+					onFilesSelected={setSelectedFiles}
 					accept="image/jpeg,image/png"
-					disabled={pending}
-					required
+					multiple={false}
 				/>
-				<p>
-					<button className="btn btn-primary mt-2" type="submit" disabled={pending}>
-						{uploadPending ? "Uploading…" : "Upload picture"}
-					</button>
+
+				<div className="d-flex flex-wrap gap-2 mt-2">
+					<form action={uploadAction}>
+						<button
+							className="btn btn-primary"
+							type="submit"
+							disabled={pending || selectedFiles.length === 0}
+						>
+							{uploadPending ? "Uploading…" : "Upload picture"}
+						</button>
+					</form>
+
 					{user.imageUrl && (
-						<form className="mt-2" action={deleteAction}>
-							<button className="btn btn-outline-danger" type="submit" disabled={pending}>
+						<form action={deleteAction}>
+							<button
+								className="btn btn-outline-danger"
+								type="submit"
+								disabled={pending}
+							>
 								{deletePending ? "Removing…" : "Remove picture"}
 							</button>
 						</form>
 					)}
+				</div>
+			</div>
 
+			{uploadState.error && (
+				<p className="alert alert-danger mt-3" role="alert">
+					{uploadState.error}
 				</p>
-			</form>
+			)}
 
+			{uploadState.success && (
+				<p className="alert alert-success mt-3" role="status">
+					{uploadState.success}
+				</p>
+			)}
 
-			{uploadState.error && <p className="alert alert-danger mt-3" role="alert">{uploadState.error}</p>}
-			{uploadState.success && <p className="alert alert-success mt-3" role="status">{uploadState.success}</p>}
-			{deleteState.error && <p className="alert alert-danger mt-3" role="alert">{deleteState.error}</p>}
-			{deleteState.success && <p className="alert alert-success mt-3" role="status">{deleteState.success}</p>}
+			{deleteState.error && (
+				<p className="alert alert-danger mt-3" role="alert">
+					{deleteState.error}
+				</p>
+			)}
+
+			{deleteState.success && (
+				<p className="alert alert-success mt-3" role="status">
+					{deleteState.success}
+				</p>
+			)}
 		</section>
 	);
 }

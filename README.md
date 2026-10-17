@@ -20,3 +20,7 @@ http://localhost:3000/api/health (web -> api)
 # Vercel variable
 
 API_BASE_URL
+
+# Dropzone
+
+https://dev.to/hamidrazadev/how-to-build-a-drag-and-drop-file-dropzone-in-react-nextjs-with-tailwind-css-line-by-line-3c6g
