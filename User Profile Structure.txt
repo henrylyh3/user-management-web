@@ -1,0 +1,41 @@
+<UserPage> (page.tsx)
+	<UserContent>(page.tsx)
+		<form action={signOutAction}> (auth.actions)
+			Sign out button
+		</form>
+
+		<UserForm user={user}> (user-form.tsx)
+			View mode
+				<ProfileImage user={user}/> (user-form.tsx)
+				User details
+				Edit button
+					└── setEditing(true) (user-form.tsx)[useState]
+
+			Edit mode
+				<EditForm> (user-form.tsx)
+					<UserImageEditor> (user-form.tsx)
+						<ProfileImage /> (user-form.tsx)
+						<Dropzone /> (Dropzone.tsx)
+
+						<form action={uploadAction}> (user-form.tsx) [useActionState]
+							└── uploadUserImageAction() (user.actions.ts)
+						</form>
+
+						<form action={deleteAction}> (user-form.tsx) [useActionState]
+							└── deleteUserImageAction() (user.actions.ts)
+						</form>
+					</UserImageEditor>
+
+					<form action={action}>
+						First name input
+						Last name input
+						Save button
+							└── updateUserAction() (user.actions.ts)
+
+						Cancel button
+							└── setEditing(false) (user-form.tsx)[useState]
+					</form>
+				</EditForm>
+		</UserForm>
+	</UserContent>
+</UserPage>
