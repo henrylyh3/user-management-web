@@ -43,6 +43,7 @@ function UserImageEditor({ user }: { user: User }) {
 	async function upload(previousState: UpdateUserState, formData: FormData) {
 		const image = selectedFiles[0];
 
+		// Dropzone stores file in state, so add the selected file to the form submission.
 		if (image) {
 			formData.set("image", image);
 		}

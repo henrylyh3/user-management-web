@@ -71,6 +71,7 @@ export async function uploadUserImageAction(id: string, _previousState: UpdateUs
 
 export async function deleteUserImageAction(id: string, _previousState: UpdateUserState, _formData: FormData): Promise<UpdateUserState> 
 {
+	// required by useActionState but not required for delete, put void
 	void _previousState;
 	void _formData;
 	const token = await getSessionToken();

@@ -8,6 +8,7 @@ import { getSessionToken, requireSessionUser,} from "@/lib/session";
 async function UsersContent() {
 	const currentUser = await requireSessionUser();
 
+	//only the user/admin can view the profile
 	if (!currentUser.isAdmin) {
 		if (!currentUser.userId) redirect("/sign-in");
 

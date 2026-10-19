@@ -7,6 +7,7 @@ export function getApiBaseUrl(): string {
 		throw new Error("API_BASE_URL is not configured.");
 	}
 
+	// remove trailing slashes to prevent url such as http://localhost:5000//api/User.
 	return baseUrl.replace(/\/+$/, "");
 }
 
