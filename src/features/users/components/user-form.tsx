@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { deleteUserImageAction, updateUserAction, uploadUserImageAction } from "@/features/users/actions/user.actions";
 import type { User, UpdateUserState } from "@/features/users/types/user.types";
 import Dropzone from "@/features/users/components/Dropzone";
+import ChangePasswordForm from "@/features/auth/components/change-password-form";
 
 type EditFormProps = {
 	user: User;
@@ -64,7 +65,7 @@ function UserImageEditor({ user }: { user: User }) {
 	const pending = uploadPending || deletePending;
 
 	return (
-		<section className="mb-4">
+		<section className="mb-4" data-coral-profile="image">
 			<ProfileImage user={user} />
 
 			<div className="mt-3">
@@ -144,7 +145,7 @@ function EditForm({ user, onSaved, onCancel }: EditFormProps) {
 	});
 
 	return (
-		<section>
+		<section data-coral-profile="edit">
 			<UserImageEditor user={user} />
 
 			<form action={action} aria-busy={pending}>
@@ -178,19 +179,20 @@ function EditForm({ user, onSaved, onCancel }: EditFormProps) {
 
 				{state.error && <p className="alert alert-danger" role="alert">{state.error}</p>}
 
-				<button className="btn btn-primary" type="submit" disabled={pending}>
-					{pending ? "Saving…" : "Save"}
-				</button>
-				{" "}
-				<button className="btn btn-outline-secondary" type="button" onClick={onCancel} disabled={pending}>
-					Cancel
-				</button>
+				<div className="d-flex flex-wrap gap-2">
+					<button className="btn btn-primary" type="submit" disabled={pending}>
+						{pending ? "Saving…" : "Save"}
+					</button>
+					<button className="btn btn-outline-secondary" type="button" onClick={onCancel} disabled={pending}>
+						Cancel
+					</button>
+				</div>
 			</form>
 		</section>
 	);
 }
 
-export default function UserForm({ user }: { user: User }) {
+export default function UserForm({ user, canChangePassword }: { user: User; canChangePassword: boolean }) {
 	const [editing, setEditing] = useState(false);
 	const [message, setMessage] = useState("");
 
@@ -208,7 +210,7 @@ export default function UserForm({ user }: { user: User }) {
 	}
 
 	return (
-		<section>
+		<section data-coral-profile="view">
 			<div className="mb-4">
 				<ProfileImage user={user} />
 			</div>
@@ -233,6 +235,7 @@ export default function UserForm({ user }: { user: User }) {
 			>
 				Edit
 			</button>
+			{canChangePassword && <ChangePasswordForm />}
 		</section>
 	);
 }

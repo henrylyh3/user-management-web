@@ -1,11 +1,12 @@
 import "server-only";
 
 import { getApiBaseUrl } from "@/lib/api/client";
-import type { User, UpdateUserRequest } from "@/features/users/types/user.types";
+import { getApiErrorMessage } from "@/lib/api/error";
+import type { AdminUser, PagedUsers, User, UpdateUserRequest } from "@/features/users/types/user.types";
 
 export class UserApiError extends Error {
-	constructor(public readonly status: number) {
-		super("Unable to load user.");
+	constructor(public readonly status: number, message: string) {
+		super(message);
 		this.name = "UserApiError";
 	}
 }
@@ -18,7 +19,7 @@ export async function getUser(id: string, token: string): Promise<User> {
 	);
 
 	if (!response.ok) {
-		throw new UserApiError(response.status);
+		throw new UserApiError(response.status, await getApiErrorMessage(response, "Unable to load user."));
 	}
 
 	const data: unknown = await response.json();
@@ -39,29 +40,28 @@ export async function updateUser(id: string, token: string, payload: UpdateUserR
 	);
 
 	if (!response.ok) {
-		throw new UserApiError(response.status);
+		throw new UserApiError(response.status, await getApiErrorMessage(response, "Unable to update the user."));
 	}
 }
 
 
-export async function getUsers(token: string): Promise<User[]> {
-	const response = await fetch(`${getApiBaseUrl()}/api/User`, {
-		headers: { Authorization: `Bearer ${token}` }
+export async function getUsers(token: string, page: number, pageSize: number): Promise<PagedUsers> {
+	const response = await fetch(`${getApiBaseUrl()}/api/User?page=${page}&pageSize=${pageSize}`, {
+		headers: { Authorization: `Bearer ${token}` },
+		cache: "no-store",
 	});
 
 	if (!response.ok) {
-		throw new UserApiError(response.status);
+		throw new UserApiError(response.status, await getApiErrorMessage(response, "Unable to load users."));
 	}
 
 	const data: unknown = await response.json();
 
-	if (!Array.isArray(data)) {
+	if (typeof data !== "object" || data === null || !("items" in data) || !Array.isArray(data.items) || !("page" in data) || !Number.isInteger(data.page) || !("pageSize" in data) || !Number.isInteger(data.pageSize) || !("totalCount" in data) || !Number.isInteger(data.totalCount) || !("totalPages" in data) || !Number.isInteger(data.totalPages)) {
 		throw new Error("Invalid users response.");
 	}
 
-	return data.map((item) => {
-		return parseUser(item);
-	});
+	return { items: data.items.map(parseAdminUser), page: data.page as number, pageSize: data.pageSize as number, totalCount: data.totalCount as number, totalPages: data.totalPages as number };
 }
 
 export async function uploadUserImage(id: string, token: string, image: File): Promise<User> {
@@ -80,7 +80,7 @@ export async function uploadUserImage(id: string, token: string, image: File): P
 	);
 
 	if (!response.ok) {
-		throw new UserApiError(response.status);
+		throw new UserApiError(response.status, await getApiErrorMessage(response, "Unable to upload the image."));
 	}
 
 	const data: unknown = await response.json();
@@ -99,7 +99,7 @@ export async function deleteUserImage(id: string, token: string): Promise<User> 
 	);
 
 	if (!response.ok) {
-		throw new UserApiError(response.status);
+		throw new UserApiError(response.status, await getApiErrorMessage(response, "Unable to remove the image."));
 	}
 
 	const data: unknown = await response.json();
@@ -142,4 +142,37 @@ function parseUser(data: unknown): User {
 		email: data.email,
 		imageUrl: getImageUrl(data.imageUrl),
 	};
+}
+
+function parseAdminUser(data: unknown): AdminUser {
+	const user = parseUser(data);
+
+	if (
+		typeof data !== "object" ||
+		data === null ||
+		!("role" in data) ||
+		(data.role !== "User" && data.role !== "Admin") ||
+		!("status" in data) ||
+		(data.status !== "Active" && data.status !== "Disabled") ||
+		!("lockoutEnd" in data) ||
+		(data.lockoutEnd !== null && (typeof data.lockoutEnd !== "string" || !Number.isFinite(Date.parse(data.lockoutEnd)))) ||
+		!("isLockedOut" in data) ||
+		typeof data.isLockedOut !== "boolean" ||
+		!("lastSignInOn" in data) ||
+		(data.lastSignInOn !== null && (typeof data.lastSignInOn !== "string" || !Number.isFinite(Date.parse(data.lastSignInOn)))) ||
+		!("createdOn" in data) ||
+		typeof data.createdOn !== "string" ||
+		!Number.isFinite(Date.parse(data.createdOn)) ||
+		!("modifiedOn" in data) ||
+		typeof data.modifiedOn !== "string" ||
+		!Number.isFinite(Date.parse(data.modifiedOn)) ||
+		!("createdBy" in data) ||
+		typeof data.createdBy !== "string" ||
+		!("modifiedBy" in data) ||
+		typeof data.modifiedBy !== "string"
+	) {
+		throw new Error("Invalid admin user response.");
+	}
+
+	return { ...user, role: data.role, status: data.status, lockoutEnd: data.lockoutEnd, isLockedOut: data.isLockedOut, lastSignInOn: data.lastSignInOn, createdOn: data.createdOn, modifiedOn: data.modifiedOn, createdBy: data.createdBy, modifiedBy: data.modifiedBy };
 }

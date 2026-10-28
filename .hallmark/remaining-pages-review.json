@@ -1,0 +1,55 @@
+{
+	"scope": "Remaining Next.js pages, Hallmark 2 UI-only",
+	"theme": "Coral",
+	"navigation": "Neutral outlined action buttons",
+	"validation": {
+		"eslint": "passed",
+		"typescript": "passed",
+		"productionBuild": "passed without warnings",
+		"tokenGeneration": "current",
+		"diffWhitespace": "passed",
+		"hallmarkStatic": "0 FAIL, 0 REFLEX, 0 WARN",
+		"hallmarkRendered": "Six public routes captured; one focus-ring failure reported inside third-party CAPTCHA"
+	},
+	"visualReview": {
+		"public": "ship",
+		"protectedComponentFixtures": "ship; synthetic data, actual components",
+		"stateFixtures": "error and not-found inspected"
+	},
+	"knownBoundaries": [
+		"No live account, session, password, upload or admin mutations performed",
+		"Active-session fixture renders initial loading state; populated sessions unverified",
+		"Generated hidden form-action identity changes across builds; kept comparison flags it although form source is unchanged",
+		"404 route deliberately returns 404; reviewed through component fixture because render linter treats HTTP 404 as failure"
+	],
+	"files": {
+		"shared": [
+			"src/components/coral-page.tsx",
+			"src/app/coral-pages.css"
+		],
+		"pages": [
+			"home",
+			"sign-up",
+			"forgot-password",
+			"resend-verification",
+			"reset-password",
+			"verify-email",
+			"refresh",
+			"users",
+			"user profile",
+			"account",
+			"audit-events",
+			"loading",
+			"not-found",
+			"error",
+			"global-error"
+		],
+		"components": [
+			"user-form",
+			"user-list",
+			"session-management",
+			"account-data-actions",
+			"audit-event-list"
+		]
+	}
+}

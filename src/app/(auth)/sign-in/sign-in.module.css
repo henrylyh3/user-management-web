@@ -1,0 +1,107 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: Coral (by request) · redesign: full
+ * Scope uses data-sign-in attributes because the existing CSS loader emits plain CSS.
+ * nav: existing account links · signature: ruled sign-in sheet · states: existing authentication states
+ * axes: light/grotesk-sans/warm · posture: restrained · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S3 R5 V4 · weakest: S; kept the real sign-in controls as the sheet's only content. */
+[data-sign-in="page"] {
+	width: 100%;
+	max-width: var(--container);
+	margin-inline: auto;
+	padding: var(--space-2xl) var(--gutter);
+}
+
+[data-sign-in="sheet"] {
+	display: grid;
+	grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+	grid-template-areas: "heading form" "navigation form";
+	grid-template-rows: auto 1fr;
+	gap: var(--space-xl) var(--space-2xl);
+	max-width: calc(var(--control-height) * 19);
+	margin-inline: auto;
+	padding: var(--space-xl);
+	color: var(--color-print);
+	background: var(--tex-cotton), var(--color-cotton);
+	border: var(--rule-hair) solid var(--color-rule);
+	border-radius: var(--radius-stock);
+	box-shadow: var(--edge-stock), var(--cast-stock);
+}
+
+[data-sign-in="heading"] { grid-area: heading; }
+[data-sign-in="heading"] h1 { font-size: var(--text-3xl); font-weight: var(--weight-heading); line-height: var(--line-height-heading); text-wrap: balance; }
+[data-sign-in="formArea"] { grid-area: form; min-width: 0; border-left: var(--rule-hair) solid var(--color-rule); padding-left: var(--space-xl); }
+[data-sign-in="formArea"] [class~="mb-3"] { margin-bottom: var(--space-lg) !important; }
+[data-sign-in="formArea"] [class~="form-check"] { min-height: var(--control-height); padding-block: var(--space-xs); }
+[data-sign-in="formArea"] [class~="form-check-label"] { cursor: pointer; }
+[data-sign-in="formArea"] input:read-only { background: var(--color-paper-2); }
+[data-sign-in="formArea"] [role="alert"], [data-sign-in="formArea"] [role="status"] { margin-bottom: var(--space-lg); }
+[data-sign-in="formArea"] button[type="submit"] { box-shadow: var(--cast-stock); }
+[data-sign-in="formArea"] button[type="submit"]:active { transform: translateY(var(--active-offset)); }
+
+[data-sign-in="recovery"] {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-xs);
+	margin-top: var(--space-lg);
+	padding-top: var(--space-md);
+	border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+[data-sign-in="navigation"] {
+	grid-area: navigation;
+	align-self: end;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-xs);
+}
+
+[data-sign-in="recovery"] a, [data-sign-in="navigation"] a {
+	display: inline-flex;
+	align-items: center;
+	min-height: var(--control-height);
+	max-width: 100%;
+	font-size: var(--text-sm);
+	font-weight: var(--weight-medium);
+	color: var(--color-print);
+	justify-content: center;
+	padding: var(--space-xs) var(--space-sm);
+	border: var(--rule-hair) solid var(--color-muted);
+	border-radius: var(--radius-card);
+	background: var(--color-cotton);
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+[data-sign-in="recovery"] a:focus-visible, [data-sign-in="navigation"] a:focus-visible {
+	outline: var(--focus-width) solid var(--color-focus);
+	outline-offset: var(--focus-offset);
+	border-radius: var(--radius-card);
+}
+
+[data-sign-in="recovery"] a:active, [data-sign-in="navigation"] a:active { color: var(--color-print); background: var(--color-paper-3); transform: translateY(var(--active-offset)); }
+
+@media (hover: hover) {
+	[data-sign-in="recovery"] a:hover, [data-sign-in="navigation"] a:hover { color: var(--color-print); background: var(--color-paper-2); text-decoration: none; }
+	[data-sign-in="formArea"] input:not(:read-only):hover { background-color: var(--color-paper-2); }
+	[data-sign-in="formArea"] button[type="submit"]:not(:disabled):hover { box-shadow: var(--cast-stock-lift); }
+}
+
+@media (max-width: 60rem) {
+	[data-sign-in="sheet"] { gap: var(--space-xl); }
+	[data-sign-in="formArea"] { padding-left: var(--space-lg); }
+}
+
+@media (max-width: 40rem) {
+	[data-sign-in="page"] { padding: var(--space-lg) var(--gutter); }
+	[data-sign-in="sheet"] {
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-areas: "heading" "form" "navigation";
+		grid-template-rows: auto;
+		gap: var(--space-lg);
+		padding: var(--space-lg);
+	}
+	[data-sign-in="heading"] { padding-bottom: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+	[data-sign-in="formArea"] { border-left: 0; padding-left: 0; }
+	[data-sign-in="navigation"] { flex-direction: row; justify-content: space-between; flex-wrap: wrap; padding-top: var(--space-sm); border-top: var(--rule-hair) solid var(--color-rule); }
+}

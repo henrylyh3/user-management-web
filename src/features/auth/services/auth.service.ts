@@ -1,7 +1,8 @@
 import "server-only";
 
 import { getApiBaseUrl } from "@/lib/api/client";
-import type { AuthResponse, CurrentUser, SignInRequest, SignUpRequest } from "@/features/auth/types/auth.types";
+import { getApiErrorMessage } from "@/lib/api/error";
+import type { CurrentUser, ResetPasswordRequest, SignUpRequest } from "@/features/auth/types/auth.types";
 
 export class AuthApiError extends Error {
 	constructor(message: string, public readonly status: number) {
@@ -18,11 +19,8 @@ function isNullableString(value: unknown): value is string | null {
 	return value === null || typeof value === "string";
 }
 
-async function authenticate(
-	endpoint: "signup" | "signin",
-	payload: SignUpRequest | SignInRequest,
-): Promise<AuthResponse> {
-	const response = await fetch(`${getApiBaseUrl()}/api/auth/${endpoint}`, {
+async function postAccount(path: string, payload: unknown, fallback: string): Promise<void> {
+	const response = await fetch(`${getApiBaseUrl()}/api/account/${path}`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(payload),
@@ -31,46 +29,52 @@ async function authenticate(
 	});
 
 	if (!response.ok) {
-		throw new AuthApiError("Authentication failed. Please try again.", response.status);
+		throw new AuthApiError(await getApiErrorMessage(response, fallback), response.status);
 	}
-
-	const data: unknown = await response.json();
-
-	if (
-		!isObject(data) ||
-		typeof data.token !== "string" ||
-		!data.token ||
-		typeof data.expiresAt !== "string" ||
-		!Number.isFinite(Date.parse(data.expiresAt))
-	) {
-		throw new Error("Invalid authentication response.");
-	}
-
-	return { token: data.token, expiresAt: data.expiresAt };
 }
 
-export function signUp(payload: SignUpRequest): Promise<AuthResponse> {
-	return authenticate("signup", payload);
+export async function signUp(payload: SignUpRequest): Promise<void> {
+	const response = await fetch(`${getApiBaseUrl()}/api/auth/signup`, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(payload),
+		cache: "no-store",
+		signal: AbortSignal.timeout(10000),
+	});
+
+	if (!response.ok) {
+		throw new AuthApiError(await getApiErrorMessage(response, "Unable to create the account. Please try again."), response.status);
+	}
 }
 
-export function signIn(payload: SignInRequest): Promise<AuthResponse> {
-	return authenticate("signin", payload);
+export async function requestPasswordReset(email: string, captchaToken: string): Promise<void> {
+	await postAccount("forgot-password", { email, captchaToken }, "Unable to request a password reset. Please try again.");
+}
+
+export async function resetPassword(payload: ResetPasswordRequest): Promise<void> {
+	await postAccount("reset-password", payload, "The password reset link is invalid or expired.");
+}
+
+export async function verifyEmail(token: string): Promise<void> {
+	await postAccount("verify-email", { token }, "The email verification link is invalid or expired.");
+}
+
+export async function resendVerification(email: string): Promise<void> {
+	await postAccount("resend-verification", { email }, "Unable to request another verification email. Please try again.");
 }
 
 export async function getCurrentUser(token: string): Promise<CurrentUser | null> {
 	const response = await fetch(`${getApiBaseUrl()}/api/auth/whoami`, {
-		headers: { Authorization: `Bearer ${token}` }
+		headers: { Authorization: `Bearer ${token}` },
+		cache: "no-store",
+		signal: AbortSignal.timeout(10000),
 	});
-	console.log("resoponse:",response);
 
 	if (!response.ok) {
-		throw new AuthApiError("Unable to verify your session. Please try again.", response.status);
+		throw new AuthApiError(await getApiErrorMessage(response, "Unable to verify your session. Please try again."), response.status);
 	}
 
 	const data: unknown = await response.json();
-
-	console.log("data:", data);
-	console.log("whoami:", JSON.stringify(data));
 
 	if (
 		!isObject(data) ||

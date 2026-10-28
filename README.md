@@ -1,6 +1,6 @@
 # user-management-web
 
-Frontend using Next.js with React for user registration, authentication, profile management, profile-picture uploads, and administrator user
+Frontend using Next.js with React for user registration, email verification, authentication, password recovery, profile management, profile-picture uploads, and administrator user management.
 
 # tech stack
 
@@ -42,27 +42,44 @@ sample of user page can refer to 'User Profile Structure.txt' at root folder
 landing: /
 signup: /sign-up
 signin: /sign-in
+forgot password: /forgot-password
+reset password: /reset-password?token={single-use-token}
+verify email: /verify-email?token={single-use-token}
+resend verification: /resend-verification
 user page: /user/{id}
-users list(admin): /users
+users list(admin): /users?page={page}
+account security and data: /account
 
 # feature
 
 - JWT token store in HttpOnly cookie
-- sign up and sign in
+- sign up, email verification, sign in, and temporary lockout after repeated failures
+- forgot/reset password and authenticated change-password flow
+- rotating refresh-token session with optional persistent "Keep me signed in" cookie
+- active-session/device list with individual session revocation
+- personal-data JSON export and password-confirmed account deletion
 - Role-base navigation for role user and admin
 - view profile and update first name, last name & profile picture
 - dropzone drag and drop for profile picture upload
 - delete profile picure
-- admin users list and admin's right to view and edit user detail
+- paginated admin users list and admin's right to view and edit user detail
+- CSP and browser security headers, route-level error/loading/not-found pages, and OpenTelemetry tracing through Vercel
 
 # Sample flow
 
-User directly access /user/id -> get token from getSessionToken(cookie) -> use token to check /auth/whoami -> call GET /user/id
+User directly accesses /user/id -> get the access token from the server-only HttpOnly session cookie -> call /auth/whoami -> call GET /user/id
+
+Forgot password -> backend emails a reset link -> user opens `/reset-password?token=...` -> frontend submits the token with the new password -> backend consumes the token once, changes the password, and revokes all sessions
+
+Revoke session -> frontend obtains a CSRF token -> BFF forwards the HttpOnly credentials and Bearer access token -> backend verifies session ownership and revokes it
+
+Delete account -> user supplies the current password and explicit confirmation -> frontend obtains a CSRF token -> backend deletes the owned profile image, account tokens, sessions, and user record
 
 # Assumption
 
 - jwt token is use for authorization, which control by backend
 - backend is fully responsible for authentication and authorization
+- access, refresh, reset, verification, and CSRF tokens are never stored in localStorage or sessionStorage
 - only 2 role is available: User, Admin
 - Profile picture must be jpeg / png format with less than 2MB in size
 - image storage is depends on file store service on backend (Local/CloudflaeR2), in prod is default to CloudflareR2 in Render varaible (FileStorage\_\_Provider)
@@ -79,6 +96,9 @@ User directly access /user/id -> get token from getSessionToken(cookie) -> use t
 # Vercel variable
 
 API_BASE_URL
+NEXT_PUBLIC_TURNSTILE_SITE_KEY
+
+Cloudflare Turnstile is always shown on forgot-password and appears on signin after two failed attempts. Signup does not use CAPTCHA. Set `NEXT_PUBLIC_TURNSTILE_SITE_KEY` to the public site key for the Vercel hostname. The matching secret key remains only in the Render backend configuration.
 
 # Useful link
 

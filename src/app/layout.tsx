@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
-			<body className="bg-body-tertiary text-body">{children}</body>
+			<body><header className="site-header"><Link className="site-wordmark" href="/">User Management</Link></header>{children}</body>
 		</html>
 	);
 }

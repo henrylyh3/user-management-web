@@ -5,7 +5,9 @@ export type SignUpRequest = {
 	password: string;
 };
 
-export type SignInRequest = { email: string; password: string; };
+export type ResetPasswordRequest = { token: string; newPassword: string; };
+
+export type SignInRequest = { email: string; password: string; keepMeSignedIn: boolean; captchaToken?: string | null; };
 
 export type AuthResponse = { token: string; expiresAt: string; };
 
@@ -17,4 +19,4 @@ export type CurrentUser = {
 	isAdmin: boolean;
 };
 
-export type AuthActionState = { error: string; };
+export type AuthActionState = { error: string; success: string; };

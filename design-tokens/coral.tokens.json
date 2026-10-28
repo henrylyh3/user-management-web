@@ -1,0 +1,1482 @@
+{
+	"$description": "Canonical Hallmark Coral foundation for Next.js and future Flutter mapping. Edit this file, then regenerate CSS.",
+	"version": "1.0.0",
+	"sources": {
+		"coral": "Installed hallmark/references/themes/coral.md (Hallmark 2.0.0)",
+		"sharedScale": "Existing Hallmark app scaffold; retained to preserve current appearance."
+	},
+	"tokens": {
+		"fontSize": {
+			"xs": {
+				"$type": "dimension",
+				"$value": {
+					"value": 0.75,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-xs",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"sm": {
+				"$type": "dimension",
+				"$value": {
+					"value": 0.875,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-sm",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"md": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.0,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-md",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"lg": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.2,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-lg",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"xl": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.44,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-xl",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"2xl": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.728,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-2xl",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"3xl": {
+				"$type": "dimension",
+				"$value": {
+					"value": 2.074,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-3xl",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"display-s": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.44,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-display-s",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"display": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.728,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-display",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"section": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.2,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-section",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"title": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.0,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-title",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"lead": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.0,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--text-lead",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			}
+		},
+		"easing": {
+			"out": {
+				"$type": "cubicBezier",
+				"$value": [
+					0.16,
+					1.0,
+					0.3,
+					1.0
+				],
+				"$extensions": {
+					"css": {
+						"name": "--ease-out",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"in": {
+				"$type": "cubicBezier",
+				"$value": [
+					0.7,
+					0.0,
+					0.84,
+					0.0
+				],
+				"$extensions": {
+					"css": {
+						"name": "--ease-in",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"in-out": {
+				"$type": "cubicBezier",
+				"$value": [
+					0.65,
+					0.0,
+					0.35,
+					1.0
+				],
+				"$extensions": {
+					"css": {
+						"name": "--ease-in-out",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			}
+		},
+		"color": {
+			"error": {
+				"$type": "color",
+				"$value": "oklch(52% 0.19 27)",
+				"$extensions": {
+					"css": {
+						"name": "--color-error",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"success": {
+				"$type": "color",
+				"$value": "oklch(50% 0.12 150)",
+				"$extensions": {
+					"css": {
+						"name": "--color-success",
+						"scope": "theme"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"page": {
+				"$type": "color",
+				"$value": "oklch(97% 0.006 55)",
+				"$extensions": {
+					"css": {
+						"name": "--color-paper",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"surfaceSubtle": {
+				"$type": "color",
+				"$value": "oklch(94.5% 0.007 55)",
+				"$extensions": {
+					"css": {
+						"name": "--color-paper-2",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"surfaceHover": {
+				"$type": "color",
+				"$value": "oklch(91.5% 0.009 55)",
+				"$extensions": {
+					"css": {
+						"name": "--color-paper-3",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"primary": {
+				"$type": "color",
+				"$value": "oklch(21% 0.012 38)",
+				"$extensions": {
+					"css": {
+						"name": "--color-ink",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"primaryHover": {
+				"$type": "color",
+				"$value": "oklch(29% 0.013 40)",
+				"$extensions": {
+					"css": {
+						"name": "--color-ink-2",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"textMuted": {
+				"$type": "color",
+				"$value": "oklch(47% 0.013 45)",
+				"$extensions": {
+					"css": {
+						"name": "--color-muted",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"border": {
+				"$type": "color",
+				"$value": "oklch(87% 0.009 55)",
+				"$extensions": {
+					"css": {
+						"name": "--color-rule",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"borderStrong": {
+				"$type": "color",
+				"$value": "oklch(81% 0.011 55)",
+				"$extensions": {
+					"css": {
+						"name": "--color-rule-2",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"accent": {
+				"$type": "color",
+				"$value": "oklch(74% 0.125 30)",
+				"$extensions": {
+					"css": {
+						"name": "--color-accent",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"onAccent": {
+				"$type": "color",
+				"$value": "oklch(21% 0.012 38)",
+				"$extensions": {
+					"css": {
+						"name": "--color-accent-ink",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"linkAccent": {
+				"$type": "color",
+				"$value": "oklch(54% 0.165 29)",
+				"$extensions": {
+					"css": {
+						"name": "--color-accent-2",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"focus": {
+				"$type": "color",
+				"$value": "oklch(54% 0.17 30)",
+				"$extensions": {
+					"css": {
+						"name": "--color-focus",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"surface": {
+				"$type": "color",
+				"$value": "oklch(98.8% 0.0045 80)",
+				"$extensions": {
+					"css": {
+						"name": "--color-cotton",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"background": {
+				"$type": "color",
+				"$value": "oklch(94.3% 0.008 64)",
+				"$extensions": {
+					"css": {
+						"name": "--color-desk",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"text": {
+				"$type": "color",
+				"$value": "oklch(23% 0.012 38)",
+				"$extensions": {
+					"css": {
+						"name": "--color-print",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"inverseSurface": {
+				"$type": "color",
+				"$value": "oklch(22% 0.011 40)",
+				"$extensions": {
+					"css": {
+						"name": "--color-board",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"onInverse": {
+				"$type": "color",
+				"$value": "oklch(96.5% 0.006 70)",
+				"$extensions": {
+					"css": {
+						"name": "--color-board-type",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"settled": {
+				"$type": "color",
+				"$value": "oklch(55.5% 0.15 33)",
+				"$extensions": {
+					"css": {
+						"name": "--color-paid",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"warning": {
+				"$type": "color",
+				"$value": "oklch(47% 0.10 75)",
+				"$extensions": {
+					"css": {
+						"name": "--color-warning",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"disabledText": {
+				"$type": "color",
+				"$value": "{color.textMuted}",
+				"$extensions": {
+					"css": {
+						"name": "--color-disabled-text",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"disabledSurface": {
+				"$type": "color",
+				"$value": "{color.surfaceHover}",
+				"$extensions": {
+					"css": {
+						"name": "--color-disabled-surface",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			}
+		},
+		"fontFamily": {
+			"display": {
+				"$type": "fontFamily",
+				"$value": [
+					"General Sans",
+					"ui-sans-serif",
+					"system-ui",
+					"sans-serif"
+				],
+				"$extensions": {
+					"css": {
+						"name": "--font-display",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"body": {
+				"$type": "fontFamily",
+				"$value": "{fontFamily.display}",
+				"$extensions": {
+					"css": {
+						"name": "--font-body",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"outlier": {
+				"$type": "fontFamily",
+				"$value": [
+					"Geist Mono",
+					"ui-monospace",
+					"monospace"
+				],
+				"$extensions": {
+					"css": {
+						"name": "--font-outlier",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			}
+		},
+		"radius": {
+			"card": {
+				"$type": "dimension",
+				"$value": {
+					"value": 8.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--radius-card",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"input": {
+				"$type": "dimension",
+				"$value": {
+					"value": 6.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--radius-input",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"pill": {
+				"$type": "dimension",
+				"$value": {
+					"value": 999.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--radius-pill",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"stock": {
+				"$type": "dimension",
+				"$value": {
+					"value": 8.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--radius-stock",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			}
+		},
+		"shadow": {
+			"shadow-card": {
+				"$type": "shadow",
+				"$value": [
+					{
+						"offsetX": 0.0,
+						"offsetY": 1.0,
+						"blur": 2.0,
+						"spread": 0,
+						"unit": "px",
+						"inset": false,
+						"color": {
+							"value": "oklch(20% 0.01 35)",
+							"alpha": 0.05
+						}
+					}
+				],
+				"$extensions": {
+					"css": {
+						"name": "--shadow-card",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"edge-stock": {
+				"$type": "shadow",
+				"$value": [
+					{
+						"offsetX": 0.0,
+						"offsetY": 1.0,
+						"blur": 0.0,
+						"spread": 0,
+						"unit": "px",
+						"inset": true,
+						"color": {
+							"reference": "{lighting.lit}",
+							"alpha": 0.9
+						}
+					},
+					{
+						"offsetX": 0.0,
+						"offsetY": -1.0,
+						"blur": 0.0,
+						"spread": 0,
+						"unit": "px",
+						"inset": true,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.07
+						}
+					},
+					{
+						"offsetX": 0.0,
+						"offsetY": 0.0,
+						"blur": 0.0,
+						"spread": 0.5,
+						"unit": "px",
+						"inset": false,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.22
+						}
+					},
+					{
+						"offsetX": 0.0,
+						"offsetY": 1.0,
+						"blur": 0.0,
+						"spread": 0,
+						"unit": "px",
+						"inset": false,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.12
+						}
+					}
+				],
+				"$extensions": {
+					"css": {
+						"name": "--edge-stock",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"cast-stock": {
+				"$type": "shadow",
+				"$value": [
+					{
+						"offsetX": 6.0,
+						"offsetY": 5.0,
+						"blur": 10.0,
+						"spread": -6.0,
+						"unit": "px",
+						"inset": false,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.3
+						}
+					}
+				],
+				"$extensions": {
+					"css": {
+						"name": "--cast-stock",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"cast-stock-lift": {
+				"$type": "shadow",
+				"$value": [
+					{
+						"offsetX": 12.0,
+						"offsetY": 10.0,
+						"blur": 18.0,
+						"spread": -8.0,
+						"unit": "px",
+						"inset": false,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.3
+						}
+					}
+				],
+				"$extensions": {
+					"css": {
+						"name": "--cast-stock-lift",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"press-groove": {
+				"$type": "shadow",
+				"$value": [
+					{
+						"offsetX": 1.0,
+						"offsetY": 1.5,
+						"blur": 2.0,
+						"spread": 0,
+						"unit": "px",
+						"inset": true,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.16
+						}
+					},
+					{
+						"offsetX": -1.0,
+						"offsetY": -1.0,
+						"blur": 0.0,
+						"spread": 0,
+						"unit": "px",
+						"inset": true,
+						"color": {
+							"reference": "{lighting.lit}",
+							"alpha": 0.9
+						}
+					},
+					{
+						"offsetX": 0.0,
+						"offsetY": 0.0,
+						"blur": 0.0,
+						"spread": 0.5,
+						"unit": "px",
+						"inset": false,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.2
+						}
+					}
+				],
+				"$extensions": {
+					"css": {
+						"name": "--press-groove",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"input": {
+				"$type": "shadow",
+				"$value": [
+					{
+						"offsetX": 1.0,
+						"offsetY": 1.0,
+						"blur": 2.0,
+						"spread": 0,
+						"unit": "px",
+						"inset": true,
+						"color": {
+							"reference": "{lighting.shade}",
+							"alpha": 0.07
+						}
+					}
+				],
+				"$extensions": {
+					"css": {
+						"name": "--shadow-input",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing shared input style"
+				}
+			}
+		},
+		"layout": {
+			"tracking-display": {
+				"$type": "dimension",
+				"$value": {
+					"value": -0.03,
+					"unit": "em"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--tracking-display",
+						"scope": "theme"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"container": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1440.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--container",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"gutter": {
+				"$type": "dimension",
+				"$value": {
+					"value": 64.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--gutter",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"gap-columns": {
+				"$type": "dimension",
+				"$value": {
+					"value": 32.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--gap-columns",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"section-gap-s": {
+				"$type": "dimension",
+				"$value": {
+					"value": 120.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--section-gap-s",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"section-gap": {
+				"$type": "dimension",
+				"$value": {
+					"value": 144.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--section-gap",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"section-gap-l": {
+				"$type": "dimension",
+				"$value": {
+					"value": 176.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--section-gap-l",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"rule-hair": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--rule-hair",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"display-weight": {
+				"$type": "number",
+				"$value": 600.0,
+				"$extensions": {
+					"css": {
+						"name": "--display-weight",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			}
+		},
+		"spacing": {
+			"3xs": {
+				"$type": "dimension",
+				"$value": {
+					"value": 2.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-3xs",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"2xs": {
+				"$type": "dimension",
+				"$value": {
+					"value": 4.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-2xs",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"xs": {
+				"$type": "dimension",
+				"$value": {
+					"value": 8.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-xs",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"sm": {
+				"$type": "dimension",
+				"$value": {
+					"value": 12.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-sm",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"md": {
+				"$type": "dimension",
+				"$value": {
+					"value": 16.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-md",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"lg": {
+				"$type": "dimension",
+				"$value": {
+					"value": 24.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-lg",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"xl": {
+				"$type": "dimension",
+				"$value": {
+					"value": 40.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-xl",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"2xl": {
+				"$type": "dimension",
+				"$value": {
+					"value": 64.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-2xl",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"3xl": {
+				"$type": "dimension",
+				"$value": {
+					"value": 96.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-3xl",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"4xl": {
+				"$type": "dimension",
+				"$value": {
+					"value": 144.0,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--space-4xl",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			}
+		},
+		"duration": {
+			"micro": {
+				"$type": "duration",
+				"$value": {
+					"value": 120.0,
+					"unit": "ms"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--dur-micro",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"short": {
+				"$type": "duration",
+				"$value": {
+					"value": 220.0,
+					"unit": "ms"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--dur-short",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"long": {
+				"$type": "duration",
+				"$value": {
+					"value": 420.0,
+					"unit": "ms"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--dur-long",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			}
+		},
+		"layer": {
+			"base": {
+				"$type": "number",
+				"$value": 1.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-base",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"raised": {
+				"$type": "number",
+				"$value": 10.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-raised",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"dropdown": {
+				"$type": "number",
+				"$value": 100.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-dropdown",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"sticky": {
+				"$type": "number",
+				"$value": 200.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-sticky",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"sticky-nav": {
+				"$type": "number",
+				"$value": 300.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-sticky-nav",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"modal": {
+				"$type": "number",
+				"$value": 400.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-modal",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"toast": {
+				"$type": "number",
+				"$value": 500.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-toast",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			},
+			"tooltip": {
+				"$type": "number",
+				"$value": 600.0,
+				"$extensions": {
+					"css": {
+						"name": "--z-tooltip",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app scaffold"
+				}
+			}
+		},
+		"texture": {
+			"cotton": {
+				"$type": "asset",
+				"$value": "cotton.svg",
+				"$extensions": {
+					"css": {
+						"name": "--tex-cotton",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"desk": {
+				"$type": "asset",
+				"$value": "felt.svg",
+				"$extensions": {
+					"css": {
+						"name": "--tex-desk",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			}
+		},
+		"lighting": {
+			"shade": {
+				"$type": "color",
+				"$value": "oklch(32% 0.03 50)",
+				"$extensions": {
+					"css": {
+						"name": "--shade",
+						"scope": "root",
+						"channels": true
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"lit": {
+				"$type": "color",
+				"$value": "oklch(100% 0.005 80)",
+				"$extensions": {
+					"css": {
+						"name": "--lit",
+						"scope": "root",
+						"channels": true
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"deep": {
+				"$type": "color",
+				"$value": "oklch(7% 0.01 40)",
+				"$extensions": {
+					"css": {
+						"name": "--deep",
+						"scope": "root",
+						"channels": true
+					},
+					"origin": "Hallmark Coral"
+				}
+			}
+		},
+		"control": {
+			"height": {
+				"$type": "dimension",
+				"$value": {
+					"value": 48,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--control-height",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			},
+			"focusWidth": {
+				"$type": "dimension",
+				"$value": {
+					"value": 2,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--focus-width",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"focusOffset": {
+				"$type": "dimension",
+				"$value": {
+					"value": 3,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--focus-offset",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"disabledOpacity": {
+				"$type": "number",
+				"$value": 0.55,
+				"$extensions": {
+					"css": {
+						"name": "--disabled-opacity",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"dropzoneDisabledOpacity": {
+				"$type": "number",
+				"$value": 0.65,
+				"$extensions": {
+					"css": {
+						"name": "--dropzone-disabled-opacity",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"checkboxSize": {
+				"$type": "dimension",
+				"$value": {
+					"value": 20,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--checkbox-size",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"labelWeight": {
+				"$type": "number",
+				"$value": 500,
+				"$extensions": {
+					"css": {
+						"name": "--label-weight",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"activeOffset": {
+				"$type": "dimension",
+				"$value": {
+					"value": 1,
+					"unit": "px"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--active-offset",
+						"scope": "root"
+					},
+					"origin": "Hallmark Coral"
+				}
+			}
+		},
+		"lineHeight": {
+			"body": {
+				"$type": "number",
+				"$value": 1.55,
+				"$extensions": {
+					"css": {
+						"name": "--line-height-body",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"heading": {
+				"$type": "number",
+				"$value": 1.2,
+				"$extensions": {
+					"css": {
+						"name": "--line-height-heading",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"section": {
+				"$type": "number",
+				"$value": 1.3,
+				"$extensions": {
+					"css": {
+						"name": "--line-height-section",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			}
+		},
+		"fontWeight": {
+			"body": {
+				"$type": "number",
+				"$value": 400,
+				"$extensions": {
+					"css": {
+						"name": "--weight-body",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"medium": {
+				"$type": "number",
+				"$value": 500,
+				"$extensions": {
+					"css": {
+						"name": "--weight-medium",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"heading": {
+				"$type": "number",
+				"$value": 600,
+				"$extensions": {
+					"css": {
+						"name": "--weight-heading",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			}
+		},
+		"breakpoint": {
+			"tablet": {
+				"$type": "dimension",
+				"$value": {
+					"value": 60,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--breakpoint-tablet",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			},
+			"phone": {
+				"$type": "dimension",
+				"$value": {
+					"value": 40,
+					"unit": "rem"
+				},
+				"$extensions": {
+					"css": {
+						"name": "--breakpoint-phone",
+						"scope": "root"
+					},
+					"origin": "implementation decision: existing app values or compatible semantic role"
+				}
+			}
+		}
+	},
+	"responsive": [
+		{
+			"maxWidth": "{breakpoint.tablet}",
+			"overrides": {
+				"layout.gutter": "24px",
+				"layout.section-gap-s": "80px",
+				"layout.section-gap": "96px",
+				"layout.section-gap-l": "120px"
+			}
+		},
+		{
+			"maxWidth": "{breakpoint.phone}",
+			"overrides": {
+				"layout.gutter": "16px",
+				"layout.section-gap-s": "56px",
+				"layout.section-gap": "72px",
+				"layout.section-gap-l": "96px",
+				"layout.gap-columns": "16px"
+			}
+		}
+	]
+}

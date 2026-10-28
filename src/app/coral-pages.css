@@ -1,0 +1,161 @@
+/* Hallmark · shape: app screens · genre: modern-minimal · theme: Coral (by request) · redesign: full
+ * nav: existing account destinations · signature: ruled forms and record sheets · states: existing API and form states
+ * axes: light/grotesk-sans/warm · posture: restrained · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · weakest: S; retained actual account forms and record tables instead of adding dashboard decoration. */
+
+[data-coral-page] {
+	width: 100%;
+	max-width: var(--container);
+	margin-inline: auto;
+	padding: var(--space-2xl) var(--gutter);
+	color: var(--color-print);
+	font-family: var(--font-body);
+	font-size: var(--text-md);
+	line-height: var(--line-height-body);
+}
+
+[data-coral-page] *, [data-coral-page] *::before, [data-coral-page] *::after { box-sizing: border-box; }
+[data-coral-sheet] {
+	display: grid;
+	grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+	grid-template-areas: "heading form" "navigation form";
+	grid-template-rows: auto 1fr;
+	gap: var(--space-xl) var(--space-2xl);
+	max-width: calc(var(--control-height) * 19);
+	margin-inline: auto;
+	padding: var(--space-xl);
+	background: var(--tex-cotton), var(--color-cotton);
+	border: var(--rule-hair) solid var(--color-rule);
+	border-radius: var(--radius-stock);
+	box-shadow: var(--edge-stock), var(--cast-stock);
+}
+
+[data-coral-heading] { grid-area: heading; min-width: 0; }
+[data-coral-heading] h1 {
+	margin: 0;
+	font-size: var(--text-3xl);
+	font-weight: var(--weight-heading);
+	line-height: var(--line-height-heading);
+	letter-spacing: var(--tracking-display);
+	overflow-wrap: break-word;
+	min-width: 0;
+	text-wrap: balance;
+}
+[data-coral-heading] p { margin-block: var(--space-md) 0; color: var(--color-muted); max-width: 52ch; }
+[data-coral-heading] nav { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-bottom: var(--space-lg); }
+[data-coral-form] { grid-area: form; min-width: 0; border-left: var(--rule-hair) solid var(--color-rule); padding-left: var(--space-xl); }
+[data-coral-navigation] { grid-area: navigation; align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+[data-coral-form] form > [class~="mb-3"] { margin-bottom: var(--space-lg) !important; }
+[data-coral-page] [role="alert"], [data-coral-page] [role="status"] { overflow-wrap: break-word; }
+[data-coral-page] form { min-width: 0; }
+[data-coral-page] label { font-weight: var(--weight-medium); }
+[data-coral-page] [class~="form-check"] { min-height: var(--control-height); align-items: center; }
+[data-coral-page] [class~="form-check-label"] { cursor: pointer; }
+[data-coral-page] .btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--space-xs);
+	min-height: var(--control-height);
+	max-width: 100%;
+	padding: var(--space-sm) var(--space-md);
+	border-radius: var(--radius-card);
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	font-weight: var(--weight-medium);
+	text-decoration: none;
+	white-space: nowrap;
+}
+[data-coral-page] .btn-primary { background: var(--color-ink); color: var(--color-cotton); border: var(--rule-hair) solid var(--color-ink); box-shadow: var(--cast-stock); }
+[data-coral-page] .btn:focus-visible, [data-coral-page] a:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+[data-coral-page] .btn:active { transform: translateY(var(--active-offset)); }
+[data-coral-page] .btn:disabled { opacity: var(--disabled-opacity); cursor: not-allowed; }
+[data-coral-actions] { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); }
+[data-coral-toolbar] { display: flex; justify-content: space-between; align-items: end; gap: var(--space-lg); padding-bottom: var(--space-xl); margin-bottom: var(--space-xl); border-bottom: var(--rule-hair) solid var(--color-rule-2); }
+[data-coral-content] { display: grid; gap: var(--space-lg); }
+[data-coral-panel] {
+	min-width: 0;
+	padding: var(--space-xl);
+	background: var(--tex-cotton), var(--color-cotton);
+	border: var(--rule-hair) solid var(--color-rule);
+	border-radius: var(--radius-stock);
+	box-shadow: var(--edge-stock), var(--cast-stock);
+}
+[data-coral-panel] h2 { margin-bottom: var(--space-lg); font-size: var(--text-section); font-weight: var(--weight-heading); }
+[data-coral-panel] > p { margin-bottom: var(--space-lg); }
+[data-coral-panel] nav { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+[data-coral-panel] [class~="list-group-item"] { padding-block: var(--space-lg) !important; }
+[data-coral-panel] [class~="list-group-item"] p { margin-top: var(--space-xs); }
+[data-coral-panel] [class~="btn-group"] { gap: var(--space-xs); }
+[data-coral-panel] [class~="btn-group"] > .btn { border-radius: var(--radius-card); }
+[data-coral-panel="danger"] { border-color: var(--color-error); }
+[data-coral-panel] code { color: var(--color-print); }
+[data-coral-account] { display: grid; gap: var(--space-lg); }
+[data-coral-profile] { display: grid; gap: var(--space-xl); }
+[data-coral-profile] > section + section { border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-xl); }
+[data-coral-table] { width: 100%; }
+[data-coral-table] th { border-bottom-color: var(--color-rule-2); }
+[data-coral-table] td { vertical-align: top; }
+[data-coral-table] td:last-child > div { flex-wrap: wrap; }
+[data-coral-page="status"] [data-coral-sheet] { display: flex; flex-direction: column; gap: var(--space-xl); max-width: calc(var(--control-height) * 14); }
+[data-coral-page="status"] [data-coral-form] { border-left: 0; padding-left: 0; }
+[data-coral-code] { margin-bottom: var(--space-lg); color: var(--color-muted); font-size: var(--text-lg); }
+[data-coral-page="home"] [data-coral-sheet] { border: 0; box-shadow: none; background: transparent; padding-block: var(--space-2xl); }
+[data-coral-page="home"] [data-coral-form] { align-self: center; }
+[data-coral-page="home"] [data-coral-actions] { flex-direction: column; align-items: stretch; }
+
+@media (hover: hover) {
+	[data-coral-page] .btn-primary:not(:disabled):hover { background: var(--color-ink-2); }
+	[data-coral-page] input:not(:read-only):hover { background-color: var(--color-paper-2); }
+}
+
+@media (max-width: 60rem) {
+	[data-coral-sheet] { gap: var(--space-xl); }
+	[data-coral-form] { padding-left: var(--space-lg); }
+	[data-coral-toolbar] { flex-wrap: wrap; align-items: start; }
+	[data-coral-panel] { padding: var(--space-lg); }
+	[data-coral-table] thead { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+	[data-coral-table], [data-coral-table] tbody, [data-coral-table] tr, [data-coral-table] td { display: block; }
+	[data-coral-table] tr { padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule-2); }
+	[data-coral-table] td { padding: var(--space-xs) 0; border: 0; text-align: start !important; white-space: normal !important; }
+	[data-coral-table] td::before { content: attr(data-label); display: block; margin-bottom: var(--space-2xs); color: var(--color-muted); font-size: var(--text-sm); }
+	[data-coral-table] td:last-child > div { justify-content: start !important; }
+}
+
+@media (max-width: 40rem) {
+	[data-coral-page] { padding: var(--space-lg) var(--gutter); }
+	[data-coral-sheet] { grid-template-columns: minmax(0, 1fr); grid-template-areas: "heading" "form" "navigation"; grid-template-rows: auto; gap: var(--space-lg); padding: var(--space-lg); }
+	[data-coral-heading] { padding-bottom: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+	[data-coral-form] { border-left: 0; padding-left: 0; }
+	[data-coral-navigation] { padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule); }
+	[data-coral-toolbar] { margin-bottom: var(--space-lg); padding-bottom: var(--space-lg); }
+	[data-coral-page="home"] [data-coral-sheet] { padding-inline: 0; }
+	[data-coral-page="status"] [data-coral-sheet] { gap: var(--space-lg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-coral-page] *, [data-coral-page] *::before, [data-coral-page] *::after { animation: none !important; transition: none !important; }
+}
+
+[data-coral-panel] > div > p { margin-bottom: var(--space-lg); }
+[data-coral-panel] [role="group"] { flex-wrap: wrap; }
+/* Preserve a visible ring when an embedded verification widget delegates focus to its host. */
+[data-coral-form] div:focus { outline: var(--focus-width) solid var(--color-focus) !important; outline-offset: var(--focus-offset) !important; }
+[data-coral-toolbar] [data-coral-heading] { border-bottom: 0; padding-bottom: 0; }
+[data-coral-account] > [data-coral-panel] { margin-bottom: 0 !important; }
+[data-coral-page] [role="group"] > .btn { border-radius: var(--radius-card) !important; }
+[data-coral-profile="view"] { display: block; }
+[data-coral-profile="view"] > button { margin-bottom: var(--space-lg); }
+[data-coral-profile="view"] > section { padding-top: var(--space-lg); }
+@media (min-width: 60rem) {
+	[data-coral-profile="view"]:has(> section) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-lg) var(--space-2xl); align-items: start; }
+	[data-coral-profile="view"]:has(> section) > div { grid-column: 1; grid-row: 1; }
+	[data-coral-profile="view"]:has(> section) > dl { grid-column: 1; grid-row: 2; }
+	[data-coral-profile="view"]:has(> section) > p { grid-column: 1; grid-row: 3; }
+	[data-coral-profile="view"]:has(> section) > button { grid-column: 1; grid-row: 4; justify-self: start; }
+	[data-coral-profile="view"]:has(> section) > section { grid-column: 2; grid-row: 1 / span 4; border-top: 0 !important; border-left: var(--rule-hair) solid var(--color-rule); margin: 0 !important; padding: 0 0 0 var(--space-xl) !important; }
+	[data-coral-profile="edit"] { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+	[data-coral-profile="edit"] > form { border-left: var(--rule-hair) solid var(--color-rule); padding-left: var(--space-xl); }
+}
+html:has([data-coral-page]) { scrollbar-color: var(--color-muted) var(--color-paper); }
+[data-coral-page] ::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }

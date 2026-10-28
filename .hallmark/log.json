@@ -1,0 +1,48 @@
+[
+ {
+  "shape": "app screens",
+  "theme": "coral",
+  "axes": "light/grotesk-sans/warm",
+  "hero": "none: account application",
+  "nav": "existing outlined account actions",
+  "footer": "existing account navigation",
+  "imagery": "existing cotton textures",
+  "photos": [],
+  "entry": "src/components/coral-page.tsx",
+  "fingerprint": "split authentication forms and ruled responsive records",
+  "sections": [
+   "account forms",
+   "record workspace",
+   "account controls",
+   "status screens"
+  ],
+  "signature": "ruled forms and record sheets",
+  "waived": [],
+  "prompt": "Apply Hallmark 2 UI-only redesign to remaining web pages",
+  "date": "2026-10-24",
+  "mode": "build"
+ },
+ {
+  "shape": "app screen",
+  "theme": "coral",
+  "axes": "light/grotesk-sans/warm",
+  "hero": "none: authentication screen",
+  "nav": "existing account links",
+  "footer": "sign-in navigation",
+  "imagery": "existing cotton texture",
+  "photos": [],
+  "entry": "src/app/(auth)/sign-in/page.tsx",
+  "fingerprint": "ruled split paper sign-in",
+  "sections": [
+   "heading",
+   "authentication form",
+   "account recovery",
+   "sign-in navigation"
+  ],
+  "signature": "ruled sign-in sheet",
+  "waived": [],
+  "prompt": "hallmark 2: redesign web sign-in only",
+  "date": "2026-10-24",
+  "mode": "build"
+ }
+]

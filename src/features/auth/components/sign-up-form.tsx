@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { signUpAction } from "@/features/auth/actions/auth.actions";
 
 export default function SignUpForm() {
-	const [state, action, pending] = useActionState(signUpAction, { error: "" });
+	const [state, action, pending] = useActionState(signUpAction, { error: "", success: "" });
 
 	return (
 		<form action={action} aria-busy={pending}>
@@ -16,6 +16,7 @@ export default function SignUpForm() {
 					name="firstName"
 					autoComplete="given-name"
 					required
+					maxLength={100}
 					readOnly={pending}
 				/>
 			</div>
@@ -27,6 +28,7 @@ export default function SignUpForm() {
 					name="lastName"
 					autoComplete="family-name"
 					required
+					maxLength={100}
 					readOnly={pending}
 				/>
 			</div>
@@ -39,6 +41,7 @@ export default function SignUpForm() {
 					type="email"
 					autoComplete="email"
 					required
+					maxLength={254}
 					readOnly={pending}
 				/>
 			</div>
@@ -51,6 +54,7 @@ export default function SignUpForm() {
 					type="password"
 					autoComplete="new-password"
 					minLength={8}
+					maxLength={128}
 					aria-describedby="password-help"
 					required
 					readOnly={pending}

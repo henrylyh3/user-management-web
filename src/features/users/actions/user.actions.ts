@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getSessionToken } from "@/lib/session";
+import { getSessionToken, redirectToSessionRefresh } from "@/lib/session";
 import {deleteUserImage, updateUser, uploadUserImage, UserApiError} from "@/features/users/services/user.service";
 import type { UpdateUserState } from "@/features/users/types/user.types";
 
@@ -10,7 +10,7 @@ export async function updateUserAction(id: string, _previousState: UpdateUserSta
 	const token = await getSessionToken();
 
 	if (!token) {
-		return { error: "Please sign in again.", success: "" };
+		redirectToSessionRefresh(`/user/${encodeURIComponent(id)}`);
 	}
 
 	const firstNameValue = formData.get("firstName");
@@ -25,9 +25,8 @@ export async function updateUserAction(id: string, _previousState: UpdateUserSta
 			lastName: lastName.trim(),
 		});
 	} catch (error) {
-		const message = "Unable to save. Please try again.";
-
-		return { error: message, success: "" };
+		if (error instanceof UserApiError && error.status === 401) redirectToSessionRefresh(`/user/${encodeURIComponent(id)}`);
+		return { error: getErrorMessage(error), success: "" };
 	}
 
 	revalidatePath(`/user/${encodeURIComponent(id)}`);
@@ -41,7 +40,7 @@ export async function uploadUserImageAction(id: string, _previousState: UpdateUs
 	const token = await getSessionToken();
 
 	if (!token) {
-		return { error: "Please sign in again.", success: "" };
+		redirectToSessionRefresh(`/user/${encodeURIComponent(id)}`);
 	}
 
 	const image = formData.get("image");
@@ -61,6 +60,7 @@ export async function uploadUserImageAction(id: string, _previousState: UpdateUs
 	try {
 		await uploadUserImage(id, token, image);
 	} catch (error) {
+		if (error instanceof UserApiError && error.status === 401) redirectToSessionRefresh(`/user/${encodeURIComponent(id)}`);
 		return { error: getErrorMessage(error), success: "" };
 	}
 
@@ -77,12 +77,13 @@ export async function deleteUserImageAction(id: string, _previousState: UpdateUs
 	const token = await getSessionToken();
 
 	if (!token) {
-		return { error: "Please sign in again.", success: "" };
+		redirectToSessionRefresh(`/user/${encodeURIComponent(id)}`);
 	}
 
 	try {
 		await deleteUserImage(id, token);
 	} catch (error) {
+		if (error instanceof UserApiError && error.status === 401) redirectToSessionRefresh(`/user/${encodeURIComponent(id)}`);
 		return { error: getErrorMessage(error), success: "" };
 	}
 
@@ -101,11 +102,11 @@ function getErrorMessage(error: unknown): string {
 		return "Unable to complete request.";
 	}
 
-	if (error.status === 400) return "Request was rejected.";
+	if (error.status === 400) return error.message;
 	if (error.status === 401) return "Please sign in again.";
-	if (error.status === 403) return "You are not allowed to update this user.";
-	if (error.status === 404) return "User was not found.";
+	if (error.status === 403 || error.status === 404) return error.message;
 	if (error.status === 413) return "Image is too large.";
+	if (error.status === 429) return "Too many requests. Please wait and try again.";
 
 	return "Unable to complete request.";
 }

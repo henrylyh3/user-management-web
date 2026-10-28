@@ -1,0 +1,45 @@
+{
+	"scope": "hallmark 2: web sign-in only",
+	"route": "/sign-in",
+	"theme": "Coral",
+	"files": [
+		"src/app/(auth)/sign-in/page.tsx",
+		"src/app/(auth)/sign-in/sign-in.module.css"
+	],
+	"preserved": {
+		"links": [
+			"/forgot-password",
+			"/resend-verification",
+			"/",
+			"/sign-up"
+		],
+		"fields": [
+			"email",
+			"password",
+			"keepMeSignedIn"
+		],
+		"formComponent": "SHA-256 unchanged",
+		"statusMessages": true,
+		"authenticationLogic": true
+	},
+	"checks": {
+		"eslint": "passed",
+		"typescript": "passed",
+		"productionBuild": "passed without warnings",
+		"hallmarkRendered": "0 FAIL, 0 REFLEX, 0 WARN",
+		"kept": "4/4 links, 3/3 fields, 1/1 headings",
+		"statusLayout": "password-reset status message inspected at tablet and phone widths"
+	},
+	"implementationDecision": "Existing Tailwind CSS loader emits module files as plain CSS. Styles use unique data-sign-in selectors and a side-effect import to avoid changing shared config.",
+	"boundaries": [
+		"No backend changes",
+		"No Flutter changes",
+		"No live credential sign-in or CAPTCHA challenge submitted"
+	],
+	"finishReview": {
+		"verdict": "ship",
+		"reviewer": "subagent",
+		"findings": 0,
+		"scope": "resting sign-in screen desktop/mobile"
+	}
+}
