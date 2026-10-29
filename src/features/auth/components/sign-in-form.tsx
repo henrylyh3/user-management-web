@@ -90,7 +90,6 @@ export default function SignInForm() {
 					type="password"
 					autoComplete="current-password"
 					required
-					minLength={8}
 					maxLength={128}
 					readOnly={pending}
 				/>
