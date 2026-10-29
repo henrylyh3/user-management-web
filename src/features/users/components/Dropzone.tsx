@@ -7,12 +7,14 @@ type DropzoneProps = {
 	onFilesSelected?: (files: File[]) => void;
 	accept?: string;
 	multiple?: boolean;
+	maxSizeMB?: number;
 };
 
 export default function Dropzone({
 	onFilesSelected,
 	accept = "*",
 	multiple = false,
+	maxSizeMB,
 }: DropzoneProps) {
 	const [isDragging, setIsDragging] = useState(false);
 	const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
@@ -23,6 +25,11 @@ export default function Dropzone({
 		(files: File[]) => {
 			if (!multiple && files.length > 1) {
 				setError("Only one file is allowed.");
+				return false;
+			}
+
+			if (maxSizeMB !== undefined && files.some((file) => file.size > maxSizeMB * 1024 * 1024)) {
+				setError(`Image must be ${maxSizeMB} MB or smaller.`);
 				return false;
 			}
 
@@ -44,14 +51,19 @@ export default function Dropzone({
 			setError("");
 			return true;
 		},
-		[accept, multiple],
+		[accept, multiple, maxSizeMB],
 	);
 
 	const handleFiles = useCallback(
 		(files: FileList | File[]) => {
 			const fileArray = Array.from(files);
 
-			if (!validateFiles(fileArray)) return;
+			if (!validateFiles(fileArray)) {
+				setDroppedFiles([]);
+				onFilesSelected?.([]);
+				if (inputRef.current) inputRef.current.value = "";
+				return;
+			}
 
 			setDroppedFiles(fileArray);
 			onFilesSelected?.(fileArray);
@@ -137,6 +149,7 @@ export default function Dropzone({
 
 				<p className="text-gray-400 text-sm mt-1 text-center">
 					{accept === "*" ? "All file types accepted" : `Accepted: ${accept}`}
+					{maxSizeMB !== undefined && ` · Maximum ${maxSizeMB} MB`}
 				</p>
 
 				<input
@@ -150,7 +163,7 @@ export default function Dropzone({
 			</div>
 
 			{error && (
-				<p className="mt-3 text-sm text-red-500 font-medium text-center">
+				<p className="alert alert-danger mt-3" role="alert">
 					{error}
 				</p>
 			)}

@@ -95,7 +95,7 @@ export default function SignInForm() {
 				/>
 			</div>
 			<div className="form-check mb-3">
-				<input className="form-check-input" id="keepMeSignedIn" name="keepMeSignedIn" type="checkbox" disabled={pending} />
+				<input className="sign-in-switch" id="keepMeSignedIn" name="keepMeSignedIn" type="checkbox" role="switch" defaultChecked disabled={pending} />
 				<label className="form-check-label" htmlFor="keepMeSignedIn">Keep me signed in</label>
 			</div>
 			{showCaptcha && <TurnstileWidget action="signin" onToken={handleCaptchaToken} resetSignal={captchaReset} />}

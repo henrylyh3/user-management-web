@@ -76,6 +76,7 @@ function UserImageEditor({ user }: { user: User }) {
 					onFilesSelected={setSelectedFiles}
 					accept="image/jpeg,image/png"
 					multiple={false}
+					maxSizeMB={2}
 				/>
 
 				<div className="d-flex flex-wrap gap-2 mt-2">

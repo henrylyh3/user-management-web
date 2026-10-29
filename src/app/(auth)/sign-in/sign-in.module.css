@@ -33,6 +33,21 @@
 [data-sign-in="formArea"] [class~="form-check"] { min-height: var(--control-height); padding-block: var(--space-xs); }
 [data-sign-in="formArea"] [class~="form-check-label"] { cursor: pointer; }
 [data-sign-in="formArea"] input:read-only { background: var(--color-paper-2); }
+[data-sign-in="formArea"] input.sign-in-switch {
+	appearance: none;
+	width: 44px;
+	height: 24px;
+	flex-shrink: 0;
+	margin: 0;
+	border: 1px solid var(--color-muted);
+	border-radius: 999px;
+	background: radial-gradient(circle, var(--color-cotton) 8px, transparent 9px) 2px center / 18px 18px no-repeat var(--color-muted);
+	cursor: pointer;
+}
+[data-sign-in="formArea"] input.sign-in-switch:checked { background-color: var(--color-ink); background-position: calc(100% - 2px) center; border-color: var(--color-ink); }
+[data-sign-in="formArea"] input.sign-in-switch:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+[data-sign-in="formArea"] input.sign-in-switch:disabled { opacity: var(--disabled-opacity); cursor: not-allowed; }
+
 [data-sign-in="formArea"] [role="alert"], [data-sign-in="formArea"] [role="status"] { margin-bottom: var(--space-lg); }
 [data-sign-in="formArea"] button[type="submit"] { box-shadow: var(--cast-stock); }
 [data-sign-in="formArea"] button[type="submit"]:active { transform: translateY(var(--active-offset)); }
