@@ -1,3 +1,4 @@
+import { formatDateTime } from "@/lib/date-time";
 import Link from "next/link";
 import type { AuditEventFilters, AuditOutcome, PagedAuditEvents } from "@/features/audit-events/types/audit-event.types";
 
@@ -58,7 +59,7 @@ function AuditTable({ events }: { events: PagedAuditEvents }) {
 				<tbody role="rowgroup">
 					{events.items.map((event) => (
 						<tr role="row" key={event.id}>
-							<td role="cell" data-label="Time"><time dateTime={event.occurredOn}>{formatDate(event.occurredOn)}</time></td>
+							<td role="cell" data-label="Time"><time dateTime={event.occurredOn}>{formatDateTime(event.occurredOn)}</time></td>
 							<td role="cell" data-label="Event"><strong>{event.action}</strong><div className="small text-secondary">{event.module}</div></td>
 							<td role="cell" data-label="Outcome"><span className={`badge ${outcomeClass(event.outcome)}`}>{event.outcome}</span></td>
 							<td role="cell" data-label="Actor"><code className="small text-break">{event.actorUserId ?? "System"}</code></td>
@@ -99,8 +100,4 @@ function outcomeClass(outcome: AuditOutcome): string {
 	if (outcome === "Success") return "text-bg-success";
 	if (outcome === "Denied") return "text-bg-warning";
 	return "text-bg-danger";
-}
-
-function formatDate(value: string): string {
-	return new Intl.DateTimeFormat("en-MY", { dateStyle: "medium", timeStyle: "medium", timeZone: "Asia/Kuala_Lumpur" }).format(new Date(value));
 }

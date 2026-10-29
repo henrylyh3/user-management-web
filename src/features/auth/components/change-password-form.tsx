@@ -28,7 +28,7 @@ export default function ChangePasswordForm() {
 		setPending(true);
 
 		try {
-			const csrfResponse = await fetch("/api/auth/csrf", { credentials: "include", cache: "no-store" });
+			const csrfResponse = await fetch("/api/auth/csrf?authenticated=true", { credentials: "include", cache: "no-store" });
 			const csrfData: unknown = await csrfResponse.json();
 			const csrfToken = isObject(csrfData) && typeof csrfData.token === "string" ? csrfData.token : "";
 
@@ -61,7 +61,7 @@ export default function ChangePasswordForm() {
 			<h2 className="h5">Change password</h2>
 			<p className="text-secondary">Changing your password signs out every device.</p>
 			<form onSubmit={handleSubmit} aria-busy={pending}>
-				<div className="mb-3"><label className="form-label" htmlFor="currentPassword">Current password</label><input className="form-control" id="currentPassword" name="currentPassword" type="password" autoComplete="current-password" minLength={8} maxLength={128} required readOnly={pending} /></div>
+				<div className="mb-3"><label className="form-label" htmlFor="currentPassword">Current password</label><input className="form-control" id="currentPassword" name="currentPassword" type="password" autoComplete="current-password" maxLength={128} required readOnly={pending} /></div>
 				<div className="mb-3"><label className="form-label" htmlFor="newPassword">New password</label><input className="form-control" id="newPassword" name="newPassword" type="password" autoComplete="new-password" minLength={8} maxLength={128} required readOnly={pending} /></div>
 				<div className="mb-3"><label className="form-label" htmlFor="confirmPassword">Confirm new password</label><input className="form-control" id="confirmPassword" name="confirmPassword" type="password" autoComplete="new-password" minLength={8} maxLength={128} required readOnly={pending} /></div>
 				{error && <p className="alert alert-danger" role="alert">{error}</p>}

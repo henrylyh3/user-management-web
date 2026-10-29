@@ -17,7 +17,7 @@ export default function AdminUserControls({ user, currentUserId }: AdminUserCont
 		setMessage("");
 
 		try {
-			const csrfResponse = await fetch("/api/auth/csrf", { credentials: "include", cache: "no-store" });
+			const csrfResponse = await fetch("/api/auth/csrf?authenticated=true", { credentials: "include", cache: "no-store" });
 			const csrfData: unknown = await csrfResponse.json();
 			const csrfToken = readCsrfToken(csrfData);
 

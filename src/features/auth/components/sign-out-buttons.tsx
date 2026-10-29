@@ -18,7 +18,7 @@ export default function SignOutButtons() {
 		setPending(allSessions ? "all" : "current");
 
 		try {
-			const csrfResponse = await fetch("/api/auth/csrf", { credentials: "include", cache: "no-store" });
+			const csrfResponse = await fetch(allSessions ? "/api/auth/csrf?authenticated=true" : "/api/auth/csrf", { credentials: "include", cache: "no-store" });
 			const csrfData: unknown = await csrfResponse.json();
 			const csrfToken = readCsrfToken(csrfData);
 

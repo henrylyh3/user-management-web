@@ -1,3 +1,4 @@
+import { formatDateTime } from "@/lib/date-time";
 import Link from "next/link";
 import type { PagedUsers } from "@/features/users/types/user.types";
 import AdminUserControls from "@/features/users/components/admin-user-controls";
@@ -43,7 +44,7 @@ export default function UserList({ users, currentUserId }: { users: PagedUsers; 
 							<td role="cell" data-label="Email">{user.email}</td>
 								<td role="cell" data-label="Role">{user.role}</td>
 								<td role="cell" data-label="Status"><span className={`badge ${user.status === "Active" ? "text-bg-success" : "text-bg-secondary"}`}>{user.status}</span>{user.isLockedOut && <span className="badge text-bg-warning ms-1">Locked</span>}</td>
-							<td role="cell" data-label="Last sign in">{user.lastSignInOn ? new Date(user.lastSignInOn).toLocaleString() : "Never"}</td>
+							<td role="cell" data-label="Last sign in">{user.lastSignInOn ? formatDateTime(user.lastSignInOn) : "Never"}</td>
 							<td role="cell" className="text-end" data-label="Action">
 									<div className="d-flex flex-wrap justify-content-end align-items-start gap-2"><Link className="btn btn-sm btn-outline-primary" href={`/user/${encodeURIComponent(user.id)}`}>View</Link><AdminUserControls user={user} currentUserId={currentUserId} /></div>
 							</td>

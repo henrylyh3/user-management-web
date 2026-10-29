@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 	try {
 		const backendResponse = await fetchAuthApi("signin", {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: { "Content-Type": "application/json", "User-Agent": request.headers.get("user-agent")?.slice(0, 512) || "Unknown browser" },
 			body: JSON.stringify({ ...body, email: body.email.trim() }),
 		});
 

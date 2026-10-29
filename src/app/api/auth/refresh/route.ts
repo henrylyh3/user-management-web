@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
 			headers: {
 				Cookie: getAuthCookieHeader(request),
 				"X-CSRF-Token": csrfToken,
+				"User-Agent": request.headers.get("user-agent")?.slice(0, 512) || "Unknown browser",
 			},
 		});
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { formatDateTime } from "@/lib/date-time";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { UserSession } from "@/features/account/types/account.types";
@@ -17,16 +18,12 @@ function readMessage(value: unknown, fallback: string): string {
 }
 
 async function getCsrfToken(): Promise<string> {
-	const response = await fetch("/api/auth/csrf", { credentials: "include", cache: "no-store" });
+	const response = await fetch("/api/auth/csrf?authenticated=true", { credentials: "include", cache: "no-store" });
 	const data: unknown = await response.json();
 	if (!response.ok || !isObject(data) || typeof data.token !== "string" || !data.token) throw new Error("Unable to verify the request.");
 	return data.token;
 }
 
-function formatDate(value: string): string {
-	const date = new Date(value);
-	return Number.isFinite(date.getTime()) ? date.toLocaleString() : "Unknown";
-}
 
 export default function SessionManagement() {
 	const router = useRouter();
@@ -109,8 +106,8 @@ export default function SessionManagement() {
 									<div>
 										<div className="fw-semibold">{session.userAgent || "Unknown device"} {session.isCurrent && <span className="badge text-bg-success ms-2">Current</span>}</div>
 										<div className="small text-secondary">IP: {session.ipAddress || "Unknown"}</div>
-										<div className="small text-secondary">Last active: {formatDate(session.lastSeenOn)}</div>
-										<div className="small text-secondary">Expires: {formatDate(session.expiresAt)}</div>
+										<div className="small text-secondary">Last active: {formatDateTime(session.lastSeenOn)}</div>
+										<div className="small text-secondary">Expires: {formatDateTime(session.expiresAt)}</div>
 									</div>
 									<button className="btn btn-outline-danger align-self-md-center" type="button" disabled={revoking !== null} onClick={() => void revokeSession(session.sessionId)}>{revoking === session.sessionId ? "Revoking…" : "Revoke"}</button>
 								</div>

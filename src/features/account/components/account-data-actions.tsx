@@ -12,7 +12,7 @@ function readMessage(value: unknown, fallback: string): string {
 }
 
 async function getCsrfToken(): Promise<string> {
-	const response = await fetch("/api/auth/csrf", { credentials: "include", cache: "no-store" });
+	const response = await fetch("/api/auth/csrf?authenticated=true", { credentials: "include", cache: "no-store" });
 	const data: unknown = await response.json();
 	if (!response.ok || !isObject(data) || typeof data.token !== "string" || !data.token) throw new Error("Unable to verify the request.");
 	return data.token;
@@ -101,7 +101,7 @@ export default function AccountDataActions() {
 					<h2 className="h4 text-danger">Delete account</h2>
 					<p className="text-secondary">This permanently deletes your profile, profile image, account tokens, and active sessions.</p>
 					<form onSubmit={deleteAccount} aria-busy={deleting}>
-						<div className="mb-3"><label className="form-label" htmlFor="deleteCurrentPassword">Current password</label><input className="form-control" id="deleteCurrentPassword" name="currentPassword" type="password" autoComplete="current-password" minLength={8} maxLength={128} required readOnly={deleting} /></div>
+						<div className="mb-3"><label className="form-label" htmlFor="deleteCurrentPassword">Current password</label><input className="form-control" id="deleteCurrentPassword" name="currentPassword" type="password" autoComplete="current-password" maxLength={128} required readOnly={deleting} /></div>
 						<div className="mb-3"><label className="form-label" htmlFor="deleteConfirmation">Type DELETE to confirm</label><input className="form-control" id="deleteConfirmation" name="confirmation" type="text" autoComplete="off" pattern="DELETE" required readOnly={deleting} /></div>
 						{error && <p className="alert alert-danger" role="alert">{error}</p>}
 						<button className="btn btn-danger" type="submit" disabled={deleting || exporting}>{deleting ? "Deleting…" : "Delete my account"}</button>
